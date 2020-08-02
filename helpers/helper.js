@@ -309,6 +309,21 @@ const objectToFormData = (object) => {
     return formData;
 }
 
+/**
+ * Compare environmental variables
+ * For react js application
+ * @param {string} applicationEnvironmentKey 
+ * @param {string} string 
+ * @return {boolean}
+ */
+const isEnv = (applicationEnvironmentKey, string) => {
+    if (process.env[applicationEnvironmentKey] === string) {
+        return true;
+    }
+
+    return false;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
-    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData
+    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv
 };
