@@ -311,7 +311,7 @@ const objectToFormData = (object) => {
 
 /**
  * Compare environmental variables
- * For react js application
+ * For dotenv variables
  * @param {string} applicationEnvironmentKey 
  * @param {string} string 
  * @return {boolean}
