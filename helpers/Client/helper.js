@@ -309,6 +309,55 @@ const objectToFormData = (object) => {
     return formData;
 }
 
+/**
+ * Compare environmental variables
+ * For dotenv variables
+ * @param {string} applicationEnvironmentKey 
+ * @param {string} string 
+ * @return {boolean}
+ */
+const isEnv = (applicationEnvironmentKey, string) => {
+    if (process.env[applicationEnvironmentKey] === string) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Generate a random string
+ * Note this is neither collision free or unpredictable
+ * @param {integer} length, max 999999, returned string length
+ * @param {string} range, characters to be used for generation
+ * @return {string}
+ */
+const randomString = (length=8, range=null) => {
+
+    length = length*1>999999? 999999 : length*1;
+
+    if (isString(range)) {
+        const chars = [...range];
+        return [...Array(length)].map(i=>chars[Math.random()*chars.length|0]).join(``);
+
+    } else {
+        return [...Array(length)].map(i=>(Math.random()*36|0).toString(36)).join(``);
+    }
+}
+
+/**
+ * Check if a given value is a boolean
+ * @param {*} value 
+ * @return {boolean}
+ */
+const isBoolean = (value) => {
+    if (typeof variable === "boolean" || typeof(value) === typeof(true)){
+        return true;
+    }
+
+    return false
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
-    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData
+    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
+    isBoolean,
 };
