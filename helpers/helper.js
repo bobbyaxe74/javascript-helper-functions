@@ -344,6 +344,20 @@ const randomString = (length=8, range=null) => {
     }
 }
 
+/**
+ * Check if a given value is a boolean
+ * @param {*} value 
+ * @return {boolean}
+ */
+const isBoolean = (value) => {
+    if (typeof variable === "boolean" || typeof(value) === typeof(true)){
+        return true;
+    }
+
+    return false
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
-    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString
+    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
+    isBoolean,
 };
