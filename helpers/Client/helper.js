@@ -371,7 +371,16 @@ const inputFileToBase64 = (file, callback) => {
     };
 };
 
+/**
+ * Return the file name form a file path
+ * @param {string} path 
+ * @return {string}
+ */
+const fileNameFromPath = (path) => {
+    return path.split('\\').pop();
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, inputFileToBase64,
+    isBoolean, inputFileToBase64, fileNameFromPath
 };
