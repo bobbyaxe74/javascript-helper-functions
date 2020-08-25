@@ -380,7 +380,28 @@ const fileNameFromPath = (path) => {
     return path.split('\\').pop();
 }
 
+/**
+ * Keys an array of objects by the given key
+ * If multiple items have the same key, only the last one will appear
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {object}
+ */
+const keyBy = (arrayOfObjects,key) => {
+    let bag = {};
+
+    if (!isEmpty(arrayOfObjects)){
+        arrayOfObjects.map((item,index)=>{
+            bag[item[key]]={...item,index:index};
+            return true;
+        });
+        return bag;
+    }
+
+    return false;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, inputFileToBase64, fileNameFromPath
+    isBoolean, inputFileToBase64, fileNameFromPath, keyBy,
 };
