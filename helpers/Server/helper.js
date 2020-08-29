@@ -361,7 +361,58 @@ const isBoolean = (value) => {
     return false
 }
 
+/**
+ * Return the file name form a file path
+ * @param {string} path 
+ * @return {string}
+ */
+const fileNameFromPath = (path) => {
+    return path.split('\\').pop();
+}
+
+/**
+ * Keys an array of objects by the given key
+ * If multiple items have the same key, only the last one will appear
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {object}
+ */
+const keyBy = (arrayOfObjects,key) => {
+    let bag = {};
+
+    if (!isEmpty(arrayOfObjects)){
+        arrayOfObjects.map((item,index)=>{
+            bag[item[key]]={...item,index:index};
+            return true;
+        });
+        return bag;
+    }
+
+    return false;
+}
+
+/**
+ * Access an uncertain object and return a replacement if accessor fails
+ * @param {object} object 
+ * @param {string} accessors eg:'fish.food.type'
+ * @param {*} replacement 
+ * @return {*}
+ */
+const tryOrReplace = (object, accessors, replacement=false) => {
+    try {
+
+        accessors = accessors.split('.');
+        for (const key of accessors) {
+            object = object[key];
+        }
+        return object;
+
+    } catch (err){
+        return replacement;
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean,
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace,
 };

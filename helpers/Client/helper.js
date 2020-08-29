@@ -357,7 +357,72 @@ const isBoolean = (value) => {
     return false
 }
 
+/**
+ * Convert a form input file to base64
+ * @param {file Object} file eg: e.target.files[0]
+ * @param {function} callback 
+ * @return {string}
+ */
+const inputFileToBase64 = (file, callback) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+        callback(reader.result);
+    };
+};
+
+/**
+ * Return the file name form a file path
+ * @param {string} path 
+ * @return {string}
+ */
+const fileNameFromPath = (path) => {
+    return path.split('\\').pop();
+}
+
+/**
+ * Keys an array of objects by the given key
+ * If multiple items have the same key, only the last one will appear
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {object}
+ */
+const keyBy = (arrayOfObjects,key) => {
+    let bag = {};
+
+    if (!isEmpty(arrayOfObjects)){
+        arrayOfObjects.map((item,index)=>{
+            bag[item[key]]={...item,index:index};
+            return true;
+        });
+        return bag;
+    }
+
+    return false;
+}
+
+/**
+ * Access an uncertain object and return a replacement if accessor fails
+ * @param {object} object 
+ * @param {string} accessors eg:'fish.food.type'
+ * @param {*} replacement 
+ * @return {*}
+ */
+const tryOrReplace = (object, accessors, replacement=false) => {
+    try {
+
+        accessors = accessors.split('.');
+        for (const key of accessors) {
+            object = object[key];
+        }
+        return object;
+
+    } catch (err){
+        return replacement;
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean,
+    isBoolean, inputFileToBase64, fileNameFromPath, keyBy, tryOrReplace,
 };
