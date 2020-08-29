@@ -391,7 +391,28 @@ const keyBy = (arrayOfObjects,key) => {
     return false;
 }
 
+/**
+ * Access an uncertain object and return a replacement if accessor fails
+ * @param {object} object 
+ * @param {string} accessors eg:'fish.food.type'
+ * @param {*} replacement 
+ * @return {*}
+ */
+const tryOrReplace = (object, accessors, replacement=false) => {
+    try {
+
+        accessors = accessors.split('.');
+        for (const key of accessors) {
+            object = object[key];
+        }
+        return object;
+
+    } catch (err){
+        return replacement;
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy,
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace,
 };
