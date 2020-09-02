@@ -412,7 +412,36 @@ const tryOrReplace = (object, accessors, replacement=false) => {
     }
 }
 
+/**
+ * List and return all numeric numbers between given numbers
+ * @param {integer} startAt 
+ * @param {integer} endAt max:999
+ * @param {integer} step min:1
+ * @return {boolean|array}
+ */
+const numericRange = (startAt, endAt, step=1) => {
+    if (startAt > endAt || endAt > 999 || step < 1){return false;}
+    return Array(Math.ceil((endAt+1 - startAt) / step)).fill(startAt).map(
+      (x, y) => {return x + y * step;}
+    );
+}
+
+/**
+ * List and return all characters between given characters
+ * @param {string} startChar charset:UTF-8
+ * @param {string} endChar charset:UTF-8
+ * @return {boolean|string}
+ */
+const characterRange = (startChar, endChar) => {
+    startChar = startChar.charCodeAt(0);
+    endChar = endChar.charCodeAt(0);
+    let numberOfChar = endChar - startChar +1;
+
+    if (startChar > endChar || numberOfChar < 0 || numberOfChar > 65535){return false;}
+    return String.fromCharCode(...[...Array(numberOfChar).keys()].map(i => i + startChar));
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace,
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange,
 };
