@@ -2,13 +2,13 @@ import FormData from 'form-data';
 
 /**
  * Checks if a given object is empty
- * @param {Object} obj 
+ * @param {Object} object 
  * @return {Boolean}
  */
-const isEmptyObject = (obj) => {
-    if (isObject(obj) && obj !== undefined) {
-        for(var key in obj) {
-            if (obj.hasOwnProperty(key)){
+const isEmptyObject = (object) => {
+    if (isObject(object) && object !== undefined) {
+        for(var key in object) {
+            if (object.hasOwnProperty(key)){
                 return false;
             }
         }
@@ -25,7 +25,6 @@ const isObject = (value) => {
     if (!Array.isArray(value) && value instanceof Object){
         return true;
     }
-
     return false
 }
 
@@ -50,7 +49,6 @@ const isArray = (value) => {
     if (Array.isArray(value) || value instanceof Array){
         return true;
     }
-
     return false
 }
 
@@ -75,7 +73,6 @@ const isString = (value) => {
     if (typeof value === 'string' || value instanceof String){
         return true;
     }
-
     return false
 }
 
@@ -92,7 +89,7 @@ const ucfirst = (string)=>{
 }
 
 /**
- * Converts the first letter of a given string to uppercase
+ * Converts the first letter of a given string to lowercase
  * @param {string} string 
  * @return {string}
  */
@@ -198,7 +195,7 @@ const passwordStrengthMeter = (string)=>{
 }
 
 /**
- * Checks if a string is an alphabet
+ * Checks if a single string character is an alphabet
  * @param {string} character 
  * @return {boolean}
  */
@@ -207,7 +204,7 @@ const isLetter = (character) => {
 }
 
 /**
- * Check if a string is completely uppercase alphabets
+ * Checks if a string is completely uppercase alphabets
  * @param {string} string 
  * @return {boolean}
  */
@@ -216,7 +213,7 @@ const isUpperCase = (string) => {
 }
 
 /**
- * Check if a string is completely lowercase alphabets
+ * Checks if a string is completely lowercase alphabets
  * @param {string} string 
  * @return {boolean}
  */
@@ -246,8 +243,7 @@ const isDefined = (value) => {
 }
 
 /**
- * Check if a value is an empty string, an empty array,
- * an empty object or is undefined
+ * Check if a value is an empty string, an empty array, an empty object or is undefined
  * @param {*} value 
  * @return {boolean}
  */
@@ -262,19 +258,19 @@ const isEmpty = (value) => {
 
 /**
  * Ellipse long words and sentences
- * @param {string} word  text to be eclipsed.
+ * @param {string} string text to be eclipsed.
  * @param {integer} displayAreaWidth current display area width
- * @param {integer} ellipsesPercentage 0-100, percentage of words not to wrap with respect to display area width
+ * @param {integer} ellipsesPercentage 0-100, percentage of string not to wrap with respect to display area width
  */
-const autoEllipses = (word, displayAreaWidth, ellipsesPercentage = 60) => {
+const autoEllipses = (string, displayAreaWidth, ellipsesPercentage = 60) => {
     let sliceLength = (parseInt(displayAreaWidth,10)/10) * (parseInt(ellipsesPercentage,10)/100);
-    let suffix = sliceLength < word.length ? '...' : '';
+    let suffix = sliceLength < string.length ? '...' : '';
 
-    return word.slice(0, sliceLength) + suffix;
+    return string.slice(0, sliceLength) + suffix;
 }
 
 /**
- * Checks if a value contains only numerical string(s)
+ * Checks if a value contains only numerical string
  * @param {*} value 
  * @return {boolean}
  */
@@ -282,12 +278,11 @@ const isNumeric = (value) => {
     if (!isArray(value)) {
         return !isNaN(parseFloat(value)) && isFinite(value);
     }
-
     return false;
 }
 
 /**
- * Checks if a give value is exactly a number and not numeric string(s)
+ * Checks if a give value is exactly a number and not numeric string
  * @param {*} value 
  * @return {boolean}
  */
@@ -315,7 +310,8 @@ const objectToFormData = (object) => {
 
 /**
  * Compare environmental variables
- * For dotenv variables
+ * For dotenv variables, Assumes `process.env` is available
+ * As this is a hybrid function it stands as both a client and server side method
  * @param {string} applicationEnvironmentKey 
  * @param {string} string 
  * @return {boolean}
@@ -357,7 +353,6 @@ const isBoolean = (value) => {
     if (typeof variable === "boolean" || typeof(value) === typeof(true)){
         return true;
     }
-
     return false
 }
 
@@ -387,14 +382,13 @@ const keyBy = (arrayOfObjects,key) => {
         });
         return bag;
     }
-
     return false;
 }
 
 /**
  * Access an uncertain object and return a replacement if accessor fails
  * @param {object} object 
- * @param {string} accessors eg:'fish.food.type'
+ * @param {string} accessors eg:'fish.type.food' where fish is the object, 'type.food' would be accessor string
  * @param {*} replacement 
  * @return {*}
  */
