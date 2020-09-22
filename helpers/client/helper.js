@@ -445,7 +445,18 @@ const characterRange = (startChar, endChar) => {
     return String.fromCharCode(...[...Array(numberOfChar).keys()].map(i => i + startChar));
 }
 
+/**
+ * Paginate an array of objects and return objects for specified page
+ * @param {array} arrayOfObjects 
+ * @param {integer} pageSize, number of objects per page
+ * @param {integer} pageNumber, current page
+ * @return {array}
+ */
+const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
+    return arrayOfObjects.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, inputFileToBase64, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange,
+    isBoolean, inputFileToBase64, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData
 };
