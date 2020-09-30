@@ -446,7 +446,26 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
     return arrayOfObjects.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 }
 
+/**
+ * Retrieves all the values for a given key in an array of objects
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {array}
+ */
+const pluck = (arrayOfObjects, key) => {
+    let bag = [];
+
+    if (!isEmpty(arrayOfObjects)){
+        arrayOfObjects.map((item)=>{
+            bag.push(item[key]);
+            return true;
+        });
+        return bag;
+    }
+    return false;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck,
 };
