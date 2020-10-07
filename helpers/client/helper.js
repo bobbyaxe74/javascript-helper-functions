@@ -489,7 +489,28 @@ const hex2rgba = (hex, alpha = 1) => {
     return `rgba(${r},${g},${b},${alpha})`;
 };
 
+/**
+ * Groups an array of objects by a specified number
+ * @param {array} arrayOfObjects
+ * @param {integer} numberPerGroup min:1
+ * @return {array}
+ */
+const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
+    let bag = [];
+    let length = arrayOfObjects.length;
+    let start = 0;
+    let stop = numberPerGroup;
+
+    do {
+        bag.push(arrayOfObjects.slice(start, stop));
+        start = start + numberPerGroup;
+        stop = stop + numberPerGroup;
+    } while (start < length);
+
+    return bag;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, inputFileToBase64, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba
+    isBoolean, inputFileToBase64, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba, sliceInToGroups
 };
