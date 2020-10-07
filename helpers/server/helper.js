@@ -261,6 +261,7 @@ const isEmpty = (value) => {
  * @param {string} string text to be eclipsed.
  * @param {integer} displayAreaWidth current display area width
  * @param {integer} ellipsesPercentage 0-100, percentage of string not to wrap with respect to display area width
+ * @return {string}
  */
 const autoEllipses = (string, displayAreaWidth, ellipsesPercentage = 60) => {
     let sliceLength = (parseInt(displayAreaWidth,10)/10) * (parseInt(ellipsesPercentage,10)/100);
@@ -465,7 +466,20 @@ const pluck = (arrayOfObjects, key) => {
     return false;
 }
 
+/**
+ * Converts hex color string to an rgba color string
+ * @param {string} hex eg: #01e, #3e4b1c
+ * @param {decimal} alpha min:0 max:1 eg: 0.2
+ * @return {string}
+ */
+const hex2rgba = (hex, alpha = 1) => {
+    hex = hex.replace('#','');
+    hex = hex.length === 3? hex+hex:hex;
+    const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+    return `rgba(${r},${g},${b},${alpha})`;
+};
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck,
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba
 };
