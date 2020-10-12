@@ -500,7 +500,31 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return bag;
 }
 
+/**
+ * Specify a database name or override a give database name
+ * On a mongoDB connection string
+ * @param {string} mongoString mongoDB connection string
+ * @param {string} dbName database name
+ * @return {string}
+ */
+const mongooseSelectDB = (mongoString, dbName) => {
+    try {
+        let string = mongoString;
+        string = string.replace('mongodb://','');
+        string = string.split('?');
+        if(string[0].includes('/')){
+            let temp = string[0].split('/');
+            return 'mongodb://'+temp[0]+'/'+dbName+'?'+string[1];
+        } else {
+            return 'mongodb://'+string[0]+'/'+dbName+'?'+string[1];
+        }
+    } catch (error) {
+        console.error('mongooseSelectDB was unable to switch to the preferred database.');
+        return mongoString;
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba, sliceInToGroups
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba, sliceInToGroups, mongooseSelectDB
 };
