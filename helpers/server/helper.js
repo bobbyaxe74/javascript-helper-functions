@@ -261,6 +261,7 @@ const isEmpty = (value) => {
  * @param {string} string text to be eclipsed.
  * @param {integer} displayAreaWidth current display area width
  * @param {integer} ellipsesPercentage 0-100, percentage of string not to wrap with respect to display area width
+ * @return {string}
  */
 const autoEllipses = (string, displayAreaWidth, ellipsesPercentage = 60) => {
     let sliceLength = (parseInt(displayAreaWidth,10)/10) * (parseInt(ellipsesPercentage,10)/100);
@@ -446,7 +447,84 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
     return arrayOfObjects.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 }
 
+/**
+ * Retrieves all the values for a given key in an array of objects
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {array}
+ */
+const pluck = (arrayOfObjects, key) => {
+    let bag = [];
+
+    if (!isEmpty(arrayOfObjects)){
+        arrayOfObjects.map((item)=>{
+            bag.push(item[key]);
+            return true;
+        });
+        return bag;
+    }
+    return false;
+}
+
+/**
+ * Converts hex color string to an rgba color string
+ * @param {string} hex eg: #01e, #3e4b1c
+ * @param {decimal} alpha min:0 max:1 eg: 0.2
+ * @return {string}
+ */
+const hex2rgba = (hex, alpha = 1) => {
+    hex = hex.replace('#','');
+    hex = hex.length === 3? hex+hex:hex;
+    const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+    return `rgba(${r},${g},${b},${alpha})`;
+};
+
+/**
+ * Groups an array of objects by a specified number
+ * @param {array} arrayOfObjects
+ * @param {integer} numberPerGroup min:1
+ * @return {array}
+ */
+const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
+    let bag = [];
+    let length = arrayOfObjects.length;
+    let start = 0;
+    let stop = numberPerGroup;
+
+    do {
+        bag.push(arrayOfObjects.slice(start, stop));
+        start = start + numberPerGroup;
+        stop = stop + numberPerGroup;
+    } while (start < length);
+
+    return bag;
+}
+
+/**
+ * Specify a database name or override a give database name
+ * On a mongoDB connection string
+ * @param {string} mongoString mongoDB connection string
+ * @param {string} dbName database name
+ * @return {string}
+ */
+const mongooseSelectDB = (mongoString, dbName) => {
+    try {
+        let string = mongoString;
+        string = string.replace('mongodb://','');
+        string = string.split('?');
+        if(string[0].includes('/')){
+            let temp = string[0].split('/');
+            return 'mongodb://'+temp[0]+'/'+dbName+'?'+string[1];
+        } else {
+            return 'mongodb://'+string[0]+'/'+dbName+'?'+string[1];
+        }
+    } catch (error) {
+        console.error('mongooseSelectDB was unable to switch to the preferred database.');
+        return mongoString;
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
     isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData
+    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba, sliceInToGroups, mongooseSelectDB
 };
