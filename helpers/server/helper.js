@@ -351,7 +351,7 @@ const randomString = (length=8, range=null) => {
  * @return {boolean}
  */
 const isBoolean = (value) => {
-    if (typeof variable === "boolean" || typeof(value) === typeof(true)){
+    if (typeof value === "boolean" || typeof(value) === typeof(true)){
         return true;
     }
     return false
@@ -451,7 +451,7 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
  * Retrieves all the values for a given key in an array of objects
  * @param {array} arrayOfObjects 
  * @param {string} key 
- * @return {array}
+ * @return {array|boolean}
  */
 const pluck = (arrayOfObjects, key) => {
     let bag = [];
