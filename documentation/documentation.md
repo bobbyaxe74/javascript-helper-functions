@@ -6,6 +6,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`autoEllipses`](#autoEllipses())
 - [`characterRange`](#characterRange())
 - [`fileNameFromPath`](#fileNameFromPath())
+- [`hasRepeatedLetters`](#hasRepeatedLetters())
 - [`hex2rgba`](#hex2rgba())
 - [`inputFileToBase64`](#inputFileToBase64())
 - [`isArray`](#isArray())
@@ -15,6 +16,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`isEmptyArray`](#isEmptyArray())
 - [`isEmptyObject`](#isEmptyObject())
 - [`isEmptyString`](#isEmptyString())
+- [`isEnv`](#isEnv())
 
 ` `  
 ` `  
@@ -74,6 +76,23 @@ fileNameFromPath("characters/images/mario.jpg",'/');
 fileNameFromPath("characters\\images\\luigi.jpg",'\\');
 
 // luigi.jpg
+```
+
+` `  
+` `  
+
+### `# hasRepeatedLetters()`
+
+The `hasRepeatedLetters()` method checks if a string has repeated characters.
+
+```
+hasRepeatedLetters('Princess Rosalina');
+
+// true
+
+hasRepeatedLetters('Pauline Louise');
+
+// false
 ```
 
 ` `  
@@ -266,3 +285,24 @@ isEmptyString([]);
 
 ` `  
 ` ` 
+
+### `# isEnv()`
+
+The `isEnv()` method compares environmental variables.
+
+```
+process.env.WORLD = 'super mario world';
+
+isEnv('WORLD','super mario world');
+
+// true
+
+process.env.WORLD = 'super mario world';
+
+isEnv('WORLD','super-mario-world');
+
+// false
+```
+
+` `  
+` `  
