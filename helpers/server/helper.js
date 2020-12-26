@@ -1,19 +1,15 @@
 import FormData from 'form-data';
 
 /**
- * Checks if a given object is empty
+ * Check if a given object is empty
  * @param {Object} object 
  * @return {Boolean}
  */
 const isEmptyObject = (object) => {
-    if (isObject(object) && object !== undefined) {
-        for(var key in object) {
-            if (object.hasOwnProperty(key)){
-                return false;
-            }
-        }
+    if (isObject(object) && object !== undefined && Object.keys(object).length === 0) {
+        return true
     }
-    return true;
+    return false;
 }
 
 /**
@@ -29,7 +25,7 @@ const isObject = (value) => {
 }
 
 /**
- * Checks if a given array is empty
+ * Check if a given array is empty
  * @param {Array} array 
  * @return {Boolean}
  */
@@ -53,7 +49,7 @@ const isArray = (value) => {
 }
 
 /**
- * Checks if a given string is empty
+ * Check if a given string is empty
  * @param {String} string 
  * @return {Boolean}
  */
@@ -195,7 +191,7 @@ const passwordStrengthMeter = (string)=>{
 }
 
 /**
- * Checks if a single string character is an alphabet
+ * Check if a single string character is an alphabet
  * @param {string} character 
  * @return {boolean}
  */
@@ -204,7 +200,7 @@ const isLetter = (character) => {
 }
 
 /**
- * Checks if a string is completely uppercase alphabets
+ * Check if a string is completely uppercase alphabets
  * @param {string} string 
  * @return {boolean}
  */
@@ -213,7 +209,7 @@ const isUpperCase = (string) => {
 }
 
 /**
- * Checks if a string is completely lowercase alphabets
+ * Check if a string is completely lowercase alphabets
  * @param {string} string 
  * @return {boolean}
  */
@@ -222,7 +218,7 @@ const isLowerCase = (string) => {
 }
 
 /**
- * Checks if a string has repeated characters
+ * Check if a string has repeated characters
  * @param {string} string 
  * @return {boolean}
  */
@@ -231,7 +227,7 @@ const hasRepeatedLetters = (string) => {
 }
 
 /**
- * Checks if a value is defined
+ * Check if a value is defined
  * @param {*} value 
  * @return {boolean}
  */
@@ -271,7 +267,7 @@ const autoEllipses = (string, displayAreaWidth, ellipsesPercentage = 60) => {
 }
 
 /**
- * Checks if a value contains only numerical string
+ * Check if a value contains only numerical string
  * @param {*} value 
  * @return {boolean}
  */
@@ -283,7 +279,7 @@ const isNumeric = (value) => {
 }
 
 /**
- * Checks if a give value is exactly a number and not numeric string
+ * Check if a give value is exactly a number and not numeric string
  * @param {*} value 
  * @return {boolean}
  */
@@ -358,12 +354,21 @@ const isBoolean = (value) => {
 }
 
 /**
- * Return the file name form a file path
+ * Return the file name from a file path
  * @param {string} path 
+ * @param {string} separator
  * @return {string}
  */
-const fileNameFromPath = (path) => {
-    return path.split('\\').pop();
+const fileNameFromPath = (path, separator='\\') => {
+    if (separator === '\\'){
+        return path.split('\\').pop();
+    }
+
+    if (separator === '/'){
+        return path.split('/').pop();
+    }
+
+    return path;
 }
 
 /**
