@@ -221,7 +221,7 @@ const isLowerCase = (string) => {
  * @return {boolean}
  */
 const hasRepeatedLetters = (string) => {
-    return (/^([a-zA-Z0-9])\1{2,3}$/).test(string);
+    return (/([a-zA-Z0-9])\1{1,}/).test(string);
 }
 
 /**
