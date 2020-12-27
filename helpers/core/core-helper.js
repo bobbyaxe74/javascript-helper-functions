@@ -1,5 +1,3 @@
-import FormData from 'form-data';
-
 /**
  * Check if a given object is empty
  * @param {Object} object 
@@ -227,7 +225,7 @@ const hasRepeatedLetters = (string) => {
 }
 
 /**
- * Check if a value is defined
+ * Check if a given value is defined
  * @param {*} value 
  * @return {boolean}
  */
@@ -239,7 +237,7 @@ const isDefined = (value) => {
 }
 
 /**
- * Check if a value is an empty string, an empty array, an empty object or is undefined
+ * Check if a given value is an empty string, an empty array, an empty object or is undefined
  * @param {*} value 
  * @return {boolean}
  */
@@ -285,40 +283,6 @@ const isNumeric = (value) => {
  */
 const isNumber = (value) => {
     return typeof value === 'number';
-}
-
-/**
- * Create a FormData object with a given object
- * @param {object} object 
- * @return {object}
- */
-const objectToFormData = (object) => {
-    const formData = new FormData();
-    for (const key in object) {
-        if (object.hasOwnProperty(key)) {
-            let value = isArray(object[key]) ? JSON.stringify(object[key]) : object[key];
-            value = isBoolean(value) ? value.toString() : value;
-            formData.append(key, value);
-        }
-    }
-
-    return formData;
-}
-
-/**
- * Compare environmental variables
- * For dotenv variables, Assumes `process.env` is available
- * As this is a hybrid function it stands as both a client and server side method
- * @param {string} applicationEnvironmentKey 
- * @param {string} string 
- * @return {boolean}
- */
-const isEnv = (applicationEnvironmentKey, string) => {
-    if (process.env[applicationEnvironmentKey] === string) {
-        return true;
-    }
-
-    return false;
 }
 
 /**
@@ -505,31 +469,8 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return bag;
 }
 
-/**
- * Specify a database name or override a give database name
- * On a mongoDB connection string
- * @param {string} mongoString mongoDB connection string
- * @param {string} dbName database name
- * @return {string}
- */
-const mongooseSelectDB = (mongoString, dbName) => {
-    try {
-        let string = mongoString;
-        string = string.replace('mongodb://','');
-        string = string.split('?');
-        if(string[0].includes('/')){
-            let temp = string[0].split('/');
-            return 'mongodb://'+temp[0]+'/'+dbName+'?'+string[1];
-        } else {
-            return 'mongodb://'+string[0]+'/'+dbName+'?'+string[1];
-        }
-    } catch (error) {
-        console.error('mongooseSelectDB was unable to switch to the preferred database.');
-        return mongoString;
-    }
-}
-
-export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, hasRepeatedLetters, isString,
-    isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, isNumber, objectToFormData, isEnv, randomString,
-    isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, pluck, hex2rgba, sliceInToGroups, mongooseSelectDB
+export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
+    hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
+    isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
+    pluck, hex2rgba, sliceInToGroups
 };
