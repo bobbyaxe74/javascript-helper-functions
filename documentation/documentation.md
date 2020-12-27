@@ -117,7 +117,7 @@ hex2rgba('#ffffff',0.4);
 
 ### `# inputFileToBase64()`
 
-> **Requires Web API**
+> CLIENT - **Requires Web API**
 
 The `inputFileToBase64()` method convert a form input file to a base64 sting.
 
@@ -287,6 +287,10 @@ isEmptyString([]);
 ` ` 
 
 ### `# isEnv()`
+
+> CLIENT - **Requires `dotenv` Package**
+
+> SERVER - **Requires `dotenv` Package**
 
 The `isEnv()` method compares environmental variables.
 
