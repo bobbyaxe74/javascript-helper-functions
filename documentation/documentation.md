@@ -3,23 +3,22 @@
 We'll discuss each method available on the JHF file. Remember, some of these methods may 
 require additional packages or API. which would be indicated appropriately.
 
-- [`autoEllipses`](#autoEllipses())
-- [`characterRange`](#characterRange())
-- [`fileNameFromPath`](#fileNameFromPath())
-- [`hasRepeatedLetters`](#hasRepeatedLetters())
-- [`hex2rgba`](#hex2rgba())
-- [`inputFileToBase64`](#inputFileToBase64())
-- [`isArray`](#isArray())
-- [`isBoolean`](#isBoolean())
-- [`isDefined`](#isDefined())
-- [`isEmpty`](#isEmpty())
-- [`isEmptyArray`](#isEmptyArray())
-- [`isEmptyObject`](#isEmptyObject())
-- [`isEmptyString`](#isEmptyString())
-- [`isEnv`](#isEnv())
+- [`autoEllipses`](#\#autoEllipses())
+- [`characterRange`](#\#characterRange())
+- [`fileNameFromPath`](#\#fileNameFromPath())
+- [`hasRepeatedLetters`](#\#hasRepeatedLetters())
+- [`hex2rgba`](#\#hex2rgba())
+- [`inputFileToBase64`](#\#inputFileToBase64())
+- [`isArray`](#\#isArray())
+- [`isBoolean`](#\#isBoolean())
+- [`isDefined`](#\#isDefined())
+- [`isEmpty`](#\#isEmpty())
+- [`isEmptyArray`](#\#isEmptyArray())
+- [`isEmptyObject`](#\#isEmptyObject())
+- [`isEmptyString`](#\#isEmptyString())
+- [`isEnv`](#\#isEnv())
 
-` `  
-` `  
+&nbsp;
 
 ### `# autoEllipses()`
 
@@ -29,16 +28,15 @@ The `autoEllipses()` method ellipse's long words and sentences in relation to gi
 let sentence, displayAreaWidth, ellipsesPercentage;
 
 sentence = 'Princess peach is a mushroomnian';
-displayAreaWidth = 50;
-ellipsesPercentage = 20;
+displayAreaWidth = 200;
+ellipsesPercentage = 95;
 
 autoEllipses(sentence, displayAreaWidth, ellipsesPercentage);
 
 // Princess peach is a ...
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# characterRange()`
 
@@ -61,8 +59,7 @@ characterRange('1','z');
 
 Notice that lowercase "a" to uppercase "Z" returns false as in the UTF-8 charset uppercase "Z" is considered higher.
 
-` `  
-` `  
+&nbsp;
 
 ### `# fileNameFromPath`
 
@@ -78,8 +75,7 @@ fileNameFromPath("characters\\images\\luigi.jpg",'\\');
 // luigi.jpg
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# hasRepeatedLetters()`
 
@@ -95,8 +91,7 @@ hasRepeatedLetters('Pauline Louise');
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# hex2rgba()`
 
@@ -112,8 +107,7 @@ hex2rgba('#ffffff',0.4);
 // rgba(255,255,255,0.4)
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# inputFileToBase64()`
 
@@ -127,8 +121,7 @@ inputFileToBase64(fileObject,(data) => data);
 // data:image/png;base64,iVBORw0KGgoAAAA...
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isArray()`
 
@@ -148,8 +141,7 @@ isArray({});
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isBoolean()`
 
@@ -169,8 +161,7 @@ isBoolean('true');
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isDefined()`
 
@@ -190,8 +181,7 @@ isDefined(citizen);
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isEmpty()`
 
@@ -219,8 +209,7 @@ isEmpty('Princess Peach');
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isEmptyArray()`
 
@@ -240,8 +229,7 @@ isEmptyArray({});
 // false
 ```
 
-` `  
-` `  
+&nbsp;
 
 ### `# isEmptyObject()`
 
@@ -308,5 +296,4 @@ isEnv('WORLD','super-mario-world');
 // false
 ```
 
-` `  
-` `  
+&nbsp;
