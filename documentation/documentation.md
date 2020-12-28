@@ -19,6 +19,15 @@ require additional packages or API. which would be indicated appropriately.
 - [`isEnv`](#-isEnv)
 - [`isLetter`](#-isLetter)
 - [`isLowerCase`](#-isLowerCase)
+- [`isNotEmptyArray`](#-isNotEmptyArray)
+- [`isNotEmptyObject`](#-isNotEmptyObject)
+- [`isNotEmptyString`](#-isNotEmptyString)
+- [`isNumber`](#-isNumber)
+- [`isNumeric`](#-isNumeric)
+- [`isObject`](#-isObject)
+- [`isString`](#-isString)
+- [`isUpperCase`](#-isUpperCase)
+- [`keyBy`](#-keyBy)
 
 &nbsp;
 
@@ -246,7 +255,7 @@ isEmptyObject({firstName:'Mario', lastName:'Mario', age:36});
 
 // false
 
-isEmptyObject('');
+isEmptyObject([]);
 
 // false
 
@@ -267,7 +276,7 @@ isEmptyString('Princess	Daisy');
 
 // false
 
-isEmptyString([]);
+isEmptyString(' ');
 
 // false
 ```
@@ -334,6 +343,205 @@ isLowerCase('diddy kong);
 isLowerCase('DiddyKong);
 
 // false
+```
+
+&nbsp;
+
+### `# isNotEmptyArray()`
+
+The `isNotEmptyArray()` method checks if a given array is a valid array and is not empty.
+
+```
+isNotEmptyArray(['Professor Elvin Gadd','Pauline Louise']);
+
+// true
+
+isNotEmptyArray([]);
+
+// false
+
+isNotEmptyArray({});
+
+// false
+```
+
+&nbsp;
+
+### `# isNotEmptyObject()`
+
+The `isNotEmptyObject()` method checks if a given object is a valid object and is not empty.
+
+```
+isNotEmptyObject({'name':'Princess Rosalina','birthPlace':'Comet Observatory'});
+
+// true
+
+isNotEmptyObject({});
+
+// false
+
+isNotEmptyObject([]);
+
+// false
+```
+
+&nbsp;
+
+### `# isNotEmptyString()`
+
+The `isNotEmptyString()` method checks if a given string is a valid string and is not empty.
+
+```
+isNotEmptyString('Pauline Louise');
+
+// true
+
+isNotEmptyString('');
+
+// false
+
+isNotEmptyString(1981);
+
+// false
+```
+
+&nbsp;
+
+### `# isNumber()`
+
+The `isNumber()` method checks if a give value is exactly a number and not numeric string.
+
+```
+isNumber(1981);
+
+// true
+
+isNumber('1981');
+
+// false
+```
+
+&nbsp;
+
+### `# isNumeric()`
+
+The `isNumeric()` method checks if a value contains only numerical string.
+
+```
+isNumeric(1985);
+
+// true
+
+isNumeric('1985');
+
+// true
+
+isNumeric('1985A');
+
+// false
+```
+
+&nbsp;
+
+### `# isObject()`
+
+The `isObject()` method checks if a given value is an object.
+
+```
+isObject({});
+
+// true
+
+isObject([]);
+
+// false
+```
+
+&nbsp;
+
+### `# isString()`
+
+The `isString()` method checks if a given value is a string.
+
+```
+isString('');
+
+// true
+
+isString('Koopa Jr. Koopa');
+
+// true
+
+isString([]);
+
+// false
+```
+
+&nbsp;
+
+### `# isUpperCase()`
+
+The `isUpperCase()` method checks if a given string is completely uppercase alphabets.
+
+```
+isUpperCase('BOOM BOOM);
+
+// true
+
+isUpperCase('Boom Boom');
+
+// false
+```
+
+&nbsp;
+
+### `# keyBy()`
+
+The `keyBy()` method keys an array of objects by the given key.
+
+```
+let arrayOfObjects = [
+  {firstName:'Mario',lastName:'Mario',occupation:'Plumber'},
+  {firstName:'Luigi',lastName:'Mario',occupation:'Plumber'},
+]
+
+keyBy(arrayOfObjects,'name');
+
+// ...
+{
+    Mario: {
+        firstName:"Mario",
+        lastName:"Mario",
+        occupation:"Plumber",
+        index:0
+    },
+    Luigi: {
+        firstName:"Luigi",
+        lastName:"Mario",
+        occupation:"Plumber",
+        index:1
+    },
+}
+```
+If multiple items have the same key, only the last one will appear
+
+```
+let arrayOfObjects = [
+  {firstName:'Princess',lastName:'Peach',occupation:'Princess'},
+  {firstName:'Princess',lastName:'Daisy',occupation:'Princess'},
+]
+
+keyBy(arrayOfObjects,'firstName');
+
+// ...
+{
+    Princess: {
+        firstName:"Princess",
+        lastName:"Daisy",
+        occupation:"Princess",
+        index:1
+    }
+}
 ```
 
 &nbsp;
