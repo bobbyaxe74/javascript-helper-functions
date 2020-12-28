@@ -3,20 +3,22 @@
 We'll discuss each method available on the JHF file. Remember, some of these methods may 
 require additional packages or API. which would be indicated appropriately.
 
-- [`autoEllipses`](#\#%20autoEllipses())
-- [`characterRange`](#\#%20characterRange())
-- [`fileNameFromPath`](#\#%20fileNameFromPath())
-- [`hasRepeatedLetters`](#\#%20hasRepeatedLetters())
-- [`hex2rgba`](#\#%20hex2rgba())
-- [`inputFileToBase64`](#\#%20inputFileToBase64())
-- [`isArray`](#\#%20isArray())
-- [`isBoolean`](#\#%20isBoolean())
-- [`isDefined`](#\#%20isDefined())
-- [`isEmpty`](#\#%20isEmpty())
-- [`isEmptyArray`](#\#%20isEmptyArray())
-- [`isEmptyObject`](#\#%20isEmptyObject())
-- [`isEmptyString`](#\#%20isEmptyString())
-- [`isEnv`](#\#%20isEnv())
+- [`autoEllipses`](#-autoEllipses)
+- [`characterRange`](#-characterRange)
+- [`fileNameFromPath`](#-fileNameFromPath)
+- [`hasRepeatedLetters`](#-hasRepeatedLetters)
+- [`hex2rgba`](#-hex2rgba)
+- [`inputFileToBase64`](#-inputFileToBase64)
+- [`isArray`](#-isArray)
+- [`isBoolean`](#-isBoolean)
+- [`isDefined`](#-isDefined)
+- [`isEmpty`](#-isEmpty)
+- [`isEmptyArray`](#-isEmptyArray)
+- [`isEmptyObject`](#-isEmptyObject)
+- [`isEmptyString`](#-isEmptyString)
+- [`isEnv`](#-isEnv)
+- [`isLetter`](#-isLetter)
+- [`isLowerCase`](#-isLowerCase)
 
 &nbsp;
 
@@ -309,9 +311,29 @@ isLetter('Donkey Kong);
 
 // null
 
-isLetter('10);
+isLetter('10');
 
 // null
+```
+
+&nbsp;
+
+### `# isLowerCase()`
+
+The `isLowerCase()` method checks if a string is completely lowercase alphabets.
+
+```
+isLowerCase('diddykong);
+
+// true
+
+isLowerCase('diddy kong);
+
+// false
+
+isLowerCase('DiddyKong);
+
+// false
 ```
 
 &nbsp;
