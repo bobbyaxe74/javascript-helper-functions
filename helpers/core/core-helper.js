@@ -189,7 +189,7 @@ const passwordStrengthMeter = (string)=>{
 }
 
 /**
- * Check if a single string character is an alphabet
+ * Check if a string of characters contains only alphabets
  * @param {string} character 
  * @return {boolean}
  */
