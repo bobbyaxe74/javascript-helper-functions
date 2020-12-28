@@ -1,10 +1,22 @@
 /**
- * Check if a given object is empty
+ * Check if a given object is a valid object and is empty
  * @param {Object} object 
  * @return {Boolean}
  */
 const isEmptyObject = (object) => {
     if (isObject(object) && object !== undefined && Object.keys(object).length === 0) {
+        return true
+    }
+    return false;
+}
+
+/**
+ * Check if a given object is a valid object and is not empty
+ * @param {Object} object 
+ * @return {Boolean}
+ */
+const isNotEmptyObject = (object) => {
+    if (isObject(object) && object !== undefined && Object.keys(object).length > 0) {
         return true
     }
     return false;
@@ -23,13 +35,25 @@ const isObject = (value) => {
 }
 
 /**
- * Check if a given array is empty
+ * Check if a given array is a valid array and is empty
  * @param {Array} array 
  * @return {Boolean}
  */
 const isEmptyArray = (array) => {
     if (isArray(array) && array !== undefined && array.length === 0) {
        return true;
+    }
+    return false;
+}
+
+/**
+ * Check if a given array is a valid array and is not empty
+ * @param {Array} array 
+ * @return {Boolean}
+ */
+const isNotEmptyArray = (array) => {
+    if (isArray(array) && array !== undefined && array.length > 0) {
+        return true;
     }
     return false;
 }
@@ -47,12 +71,24 @@ const isArray = (value) => {
 }
 
 /**
- * Check if a given string is empty
+ * Check if a given string is a valid string and is empty
  * @param {String} string 
  * @return {Boolean}
  */
 const isEmptyString = (string) => {
     if (isString(string) && string !== undefined && string.length === 0) {
+       return true;
+    }
+    return false;
+}
+
+/**
+ * Check if a given string is a valid string and is not empty
+ * @param {String} string 
+ * @return {Boolean}
+ */
+const isNotEmptyString = (string) => {
+    if (isString(string) && string !== undefined && string.length > 0) {
        return true;
     }
     return false;
@@ -472,5 +508,5 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString
 };
