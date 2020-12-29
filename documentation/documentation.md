@@ -28,6 +28,9 @@ require additional packages or API. which would be indicated appropriately.
 - [`isString`](#-isString)
 - [`isUpperCase`](#-isUpperCase)
 - [`keyBy`](#-keyBy)
+- [`lcfirst`](#-lcfirst)
+- [`mongooseSelectDB`](#-mongooseSelectDB)
+- [`numericRange`](#-numericRange)
 
 &nbsp;
 
@@ -543,5 +546,52 @@ keyBy(arrayOfObjects,'firstName');
     }
 }
 ```
+
+&nbsp;
+
+### `# lcfirst()`
+
+The `lcfirst()` method converts the first letter of a given string to lowercase.
+
+```
+lcfirst('Toadette Mushroom);
+
+// toadette	Mushroom
+
+lcfirst(undefined);
+
+// ''
+```
+
+&nbsp;
+
+### `# mongooseSelectDB()`
+
+The `mongooseSelectDB()` method will specify a database name or override a give database name
+on a mongoDB connection string. This is helpful in situations where you have no control of the
+connection string being passed in through the environmental variables.
+
+```
+mongooseSelectDB('mongodb://superAdmin:*****@111.887.144.322:27017/?authSource=admin','super_mario_world');
+
+// mongodb://superAdmin:*****@111.887.144.322:27017/super_mario_world?authSource=admin
+```
+
+&nbsp;
+
+### `# numericRange()`
+
+The `numericRange()` method lists and return all numeric numbers between given numbers.
+
+```
+numericRange('3','99');
+
+// [3,4,5,6,7,8,9,.......91,92,93,94,95,96,97,98,99]
+
+numericRange(3,99,9);
+
+// [3,12,21,30,39,48,57,66,75,84,93]
+```
+There is also a third parameter of step which determines the sequence in which the numeric numbers are listed.
 
 &nbsp;
