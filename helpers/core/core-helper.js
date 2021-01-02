@@ -107,7 +107,7 @@ const isString = (value) => {
 }
 
 /**
- * Converts the first letter of a given string to uppercase
+ * Convert the first letter of a given string to uppercase
  * @param {string} string 
  * @return {string}
  */
@@ -119,7 +119,7 @@ const ucfirst = (string)=>{
 }
 
 /**
- * Converts the first letter of a given string to lowercase
+ * Convert the first letter of a given string to lowercase
  * @param {string} string 
  * @return {string}
  */
@@ -131,7 +131,7 @@ const lcfirst = (string)=>{
 }
 
 /**
- * Returns a random date and time relative to current date
+ * Return a random date and time relative to current date
  * @param {integer|null} max hours ahead
  * @param {integer|null} min hours behind
  * @return {string} date time string
@@ -146,7 +146,7 @@ const randomDate = (max=null, min=null)=>{
 }
 
 /**
- * Evaluates and returns password strength based on a 100% points scale
+ * Evaluate and return password strength based on a 100% points scale
  * @param {string} string 
  * @return {integer}
  */
@@ -453,7 +453,7 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
 }
 
 /**
- * Retrieves all the values for a given key in an array of objects
+ * Retrieve all the values for a given key in an array of objects
  * @param {array} arrayOfObjects 
  * @param {string} key 
  * @return {array|boolean}
@@ -485,7 +485,7 @@ const hex2rgba = (hex, alpha = 1) => {
 };
 
 /**
- * Groups an array of objects by a specified number
+ * Group an array of objects by a specified number
  * @param {array} arrayOfObjects
  * @param {integer} numberPerGroup min:1
  * @return {array}
