@@ -31,6 +31,15 @@ require additional packages or API. which would be indicated appropriately.
 - [`lcfirst`](#-lcfirst)
 - [`mongooseSelectDB`](#-mongooseSelectDB)
 - [`numericRange`](#-numericRange)
+- [`objectToFormData`](#-objectToFormData)
+- [`paginateData`](#-paginateData)
+- [`passwordStrengthMeter`](#-passwordStrengthMeter)
+- [`pluck`](#-pluck)
+- [`randomDate`](#-randomDate)
+- [`randomString`](#-randomString)
+- [`sliceInToGroups`](#-sliceInToGroups)
+- [`tryOrReplace`](#-tryOrReplace)
+- [`ucfirst`](#-ucfirst)
 
 &nbsp;
 
@@ -188,9 +197,9 @@ isDefined(citizen);
 
 // true
 
-let citizen;
+let person;
 
-isDefined(citizen);
+isDefined(person);
 
 // false
 ```
@@ -593,5 +602,297 @@ numericRange(3,99,9);
 // [3,12,21,30,39,48,57,66,75,84,93]
 ```
 There is also a third parameter of step which determines the sequence in which the numeric numbers are listed.
+
+&nbsp;
+
+### `# objectToFormData()`
+
+> CLIENT - **Requires Web API**
+
+> SERVER - **Requires `form-data` Package**
+
+The `objectToFormData()` method creates a FormData object with a given object.
+
+```
+let person = {"firstName":"Professor Elvin","lastName":"Gadd"};
+
+let formDataObject = objectToFormData(person);
+formDataObject.get('lastName');
+
+// Gadd
+
+let formDataObject = objectToFormData(person);
+formDataObject.get('middleName');
+
+// null
+```
+
+&nbsp;
+
+### `# paginateData()`
+
+The `paginateData()` method paginates an array of objects and return objects for specified page.
+
+```
+let list = [
+  {firstName:'Iggy',lastName:'Koopalings'},
+  {firstName:'Larry',lastName:'Koopalings'},
+  {firstName:'Morton Jr.',lastName:'Koopalings'},
+  {firstName:'Wendy O',lastName:'Koopalings'},
+  {firstName:'Roy',lastName:'Koopalings'},
+  {firstName:'Lemmy',lastName:'Koopalings'},
+  {firstName:'Ludwig von',lastName:'Koopalings'},
+];
+
+paginateData(list,3,1);
+
+// ...
+[
+  {firstName:'Iggy',lastName:'Koopalings'},
+  {firstName:'Larry',lastName:'Koopalings'},
+  {firstName:'Morton Jr.',lastName:'Koopalings'}
+]
+
+paginateData(list,3,3);
+
+// ...
+[
+    {firstName:'Ludwig von',lastName:'Koopalings'}
+]
+```
+This method requires three parameters `paginateData(arrayOfObjects, pageSize, pageNumber)` the first is
+**arrayOfObjects** which is the array of the objects that needs to be paginated, The second is **pageSize**
+which is the number of objects expected per page and the third is **pageNumber** which is the current page.
+
+&nbsp;
+
+### `# passwordStrengthMeter()`
+
+The `passwordStrengthMeter()` method evaluates and returns password strength based on a 100% points scale.
+
+```
+passwordStrengthMeter('theprincessisinanothercastle');
+
+// 51
+
+passwordStrengthMeter('ThePrincessIsInAnotherCastle');
+
+// 61
+
+passwordStrengthMeter('ThePr!n(e$$!$!n@nother(astle');
+
+// 81
+```
+
+&nbsp;
+
+### `# pluck()`
+
+The `pluck()` method retrieves all the values for a given key in an array of objects.
+
+```
+let list = [
+    {firstName:'King',lastName:'Koopa'},
+    {firstName:'Koopa Jr.',lastName:'Koopa'},
+    {firstName:'Kamek',lastName:'Koopa'},
+    {firstName:'Kammy',lastName:'Koopa'},
+];
+
+pluck(list,'firstName');
+
+// ...
+[ 
+    "King",
+    "Koopa Jr.",
+    "Kamek",
+    "Kammy"
+]
+
+pluck(list,'lastName');
+
+// ...
+[ 
+    "Koopa",
+    "Koopa",
+    "Koopa",
+    "Koopa"
+]
+
+pluck(list,'age');
+
+// ...
+[
+    undefined, 
+    undefined, 
+    undefined, 
+    undefined
+]
+```
+
+&nbsp;
+
+### `# randomDate()`
+
+The `randomDate()` method returns a random date and time relative to current date.
+
+```
+randomDate();
+
+// 01/01/2021, 23:44:15
+
+randomDate(10);
+
+// 02/01/2021, 05:45:21
+
+randomDate(10,10);
+
+// 02/01/2021, 03:45:49
+
+randomDate(null,10);
+
+// 01/01/2021, 13:47:52
+
+randomDate(10,null);
+
+// 02/01/2021, 03:48:32
+```
+This method has two optional parameters that are both nullable `randomDate(max, min)` the first is 
+**max** which is the maximum number of hours ahead that is allowed in the random time generation and
+the second is **min** which is the minimum number of hours behind that is allowed for the random
+time generation.
+
+&nbsp;
+
+### `# randomString()`
+
+The `randomString()` method generates a random string.
+
+```
+randomString();
+
+// boq9z5vk
+
+randomString(9);
+
+// aykjmt1c6
+
+randomString(9,'abcd');
+
+// bcdadadcc
+```
+Warning:*this method generates strings that are neither collision free or unpredictable*
+
+This method has two optional parameters `randomString(length, range)` the first is 
+**length** which is the maximum length of string to be generated and the second is 
+**range** which will serve as the PRNG or seed value for generation of the string.
+
+&nbsp;
+
+### `# sliceInToGroups()`
+
+The `sliceInToGroups()` method groups an array of objects by a specified number.
+
+```
+let list = [
+  {fullName:'Mario Mario',occupation:'Plumber'},
+  {fullName:'Luigi Mario',occupation:'Plumber'},
+  {fullName:'Yoshi Green',occupation:'Self Employed'},
+  {fullName:'Princess Peach',occupation:'Princess'},
+  {fullName:'King Koopa',occupation:'King'}
+];
+
+sliceInToGroups(list,2);
+
+// ...
+[
+    [
+        {fullName:'Mario Mario',occupation:'Plumber'},
+        {fullName:'Luigi Mario',occupation:'Plumber'}
+    ],
+    [
+        {fullName:'Yoshi Green',occupation:'Self Employed'},
+        {fullName:'Princess Peach',occupation:'Princess'}
+    ],
+    [
+        {fullName:'King Koopa',occupation:'King'}
+    ],
+]
+
+sliceInToGroups(list,4);
+
+// ...
+[
+    [
+        {fullName:'Mario Mario',occupation:'Plumber'},
+        {fullName:'Luigi Mario',occupation:'Plumber'},
+        {fullName:'Yoshi Green',occupation:'Self Employed'},
+        {fullName:'Princess Peach',occupation:'Princess'}
+    ],
+    [
+        {fullName:'King Koopa',occupation:'King'}
+    ],
+]
+```
+This method requires two parameters `sliceInToGroups(arrayOfObjects, numberPerGroup)` the first is
+**arrayOfObjects** which is the array of the objects that needs to be grouped, The second is **numberPerGroup**
+which is the number of objects expected per group.
+
+&nbsp;
+
+### `# tryOrReplace()`
+
+The `tryOrReplace()` method accesses an uncertain object value and return a replacement if accessor fails.
+
+```
+let person = {
+    "fullName":"Lord Fawful",
+    "residency":{
+      "nationality":"Beanish"
+    },
+    "occupation":{
+      "type":"Shop keeper",
+      "finance":{
+        "income":"$1000",
+        "tax":"$100"
+      }
+    }
+};
+
+tryOrReplace(person,'occupation.finance.income');
+
+// $1000
+
+tryOrReplace(person,'occupation.finance.salary');
+
+// undefined
+
+tryOrReplace(person,'occupation.finance.salary.amount');
+
+// false
+
+tryOrReplace(person,'occupation.finance.salary.amount','$0');
+
+// $0
+```
+This method has three parameters `tryOrReplace(object, accessors, replacement)` the first is
+**object** which is the object to be accessed, The second is **accessors** which is the path of 
+the object's property being accessed and the third is the **replacement** which is the value to
+be returned should an exception be thrown while trying to access the given object's accessors path.
+
+&nbsp;
+
+### `# ucfirst()`
+
+The `ucfirst()` method converts the first letter of a given string to uppercase.
+
+```
+ucfirst(king Boo);
+
+// King Boo
+
+ucfirst(undefined);
+
+// ''
+```
 
 &nbsp;
