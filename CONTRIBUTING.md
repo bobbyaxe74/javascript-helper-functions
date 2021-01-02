@@ -49,7 +49,7 @@ Here's a list of some currently use packages:
 
 ### Design Decisions
 
-When we make a significant decision in how we maintain the project and what we can or cannot support, we will be in [the documentation](#). If you have a question around how we do things, check to see if it is documented once the documentation is available. If it is *not* documented there, please contact us at [bobbyaxe61@gmail.com](mailto:bobbyaxe61@gmail.com) and ask your questions.
+When we make a significant decision in how we maintain the project and what we can or cannot support, we will be in [the documentation](./documentation/documentation.md). If you have a question around how we do things, check to see if it is documented once the documentation is available. If it is *not* documented there, please contact us at [bobbyaxe61@gmail.com](mailto:bobbyaxe61@gmail.com) and ask your questions.
 
 
 ## How Can I Contribute?
@@ -58,7 +58,7 @@ When we make a significant decision in how we maintain the project and what we c
 
 This section guides you through submitting a bug report for JHF. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer: :computer:, and find related reports :mag_right:.
 
-Before creating bug reports, please check [the documentation](#) as you might find out that you don't need to create one. When you are creating a bug report, please include as many details as possible. begin very detailed helps us resolve issues faster.
+Before creating bug reports, please check [the documentation](./documentation/documentation.md) as you might find out that you don't need to create one. When you are creating a bug report, please include as many details as possible. begin very detailed helps us resolve issues faster.
 
 > **Note:** If you find a **Closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
@@ -66,7 +66,7 @@ Before creating bug reports, please check [the documentation](#) as you might fi
 
 This section guides you through submitting an enhancement suggestion for JHF, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
 
-Before creating enhancement suggestions, please check [The documentation](#) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please include as many details as possible including the steps that you imagine you would take if the feature you're requesting existed.
+Before creating enhancement suggestions, please check [The documentation](./documentation/documentation.md) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please include as many details as possible including the steps that you imagine you would take if the feature you're requesting existed.
 
 ### Your First Code Contribution
 
