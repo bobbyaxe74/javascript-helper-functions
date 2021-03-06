@@ -38,6 +38,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`randomDate`](#-randomDate)
 - [`randomString`](#-randomString)
 - [`sliceInToGroups`](#-sliceInToGroups)
+- [`mapAs`](#-mapAs)
 - [`tryOrReplace`](#-tryOrReplace)
 - [`ucfirst`](#-ucfirst)
 
@@ -570,6 +571,43 @@ lcfirst('Toadette Mushroom);
 lcfirst(undefined);
 
 // ''
+```
+
+&nbsp;
+
+### `# mapAs()`
+
+The `mapAs()` method restructures individual objects contained in an array 
+to conform with the given structure, also with the option of merging in the original object.
+
+```
+let data = [
+    {fullName:'Mario Mario',occupation:'Plumber',age:'34'},
+    {fullName:'Luigi Mario',occupation:'Plumber',age:'34'},
+    {fullName:'Yoshi Green',occupation:'Self Employed',age:'27'},
+    {fullName:'Princess Peach',occupation:'Princess',age:'32'}
+];
+let structure = {'fullName':'name','occupation':'job'};
+
+mapAs(data,structure);
+
+// ...
+[
+  { name: 'Mario Mario', job: 'Plumber' },
+  { name: 'Luigi Mario', job: 'Plumber' },
+  { name: 'Yoshi Green', job: 'Self Employed' },
+  { name: 'Princess Peach', job: 'Princess' }
+]
+
+mapAs(data,structure,true);
+
+// ...
+[
+  { fullName: 'Mario Mario', occupation: 'Plumber', age: '34', name: 'Mario Mario', job: 'Plumber'},
+  { fullName: 'Luigi Mario', occupation: 'Plumber', age: '34', name: 'Luigi Mario', job: 'Plumber'},
+  { fullName: 'Yoshi Green', occupation: 'Self Employed', age: '27', name: 'Yoshi Green', job: 'Self Employed'},
+  { fullName: 'Princess Peach', occupation: 'Princess', age: '32', name: 'Princess Peach', job: 'Princess'}
+]
 ```
 
 &nbsp;

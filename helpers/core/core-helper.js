@@ -505,8 +505,32 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return bag;
 }
 
+/**
+ * Restructure individual objects contained in an array
+ * to conform with the given structure, also with the  
+ * option of merging in the original object.
+ * @param {array} arrayOfObjects [{a:'1', b:'2', c:'3'}]
+ * @param {object} structure {'a':'apple', 'b':'book'}; object properties with key of `a` to be replaced with key of `apple`
+ * @param {boolean} merge 
+ * @returns {array} [{ apple: '1', book: '2' }]
+ */
+ const mapAs = (arrayOfObjects, structure, merge=false) => {
+    return arrayOfObjects.map((item)=>{
+
+        let set = {};
+        for(each in structure){
+            if (item[each]){
+                set = {...set,[structure[each]]:item[each]};
+            }
+        }
+
+        // Check if current object data should be merged in.
+        return merge ? {...item,...set} : set;
+    });
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs
 };
