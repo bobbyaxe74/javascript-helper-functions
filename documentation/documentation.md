@@ -145,7 +145,7 @@ groupBy([],'nationality');
 
 ### `# hasRepeatedLetters()`
 
-The `hasRepeatedLetters()` method checks if a string has repeated characters.
+The `hasRepeatedLetters()` method checks if a string has successive repeated characters.
 
 ```
 hasRepeatedLetters('Princess Rosalina');

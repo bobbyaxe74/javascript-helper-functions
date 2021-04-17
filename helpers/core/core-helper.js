@@ -252,7 +252,7 @@ const isLowerCase = (string) => {
 }
 
 /**
- * Check if a string has repeated characters
+ * Check if a string has successive repeated characters
  * @param {string} string 
  * @return {boolean}
  */
