@@ -376,19 +376,19 @@ const fileNameFromPath = (path, separator='\\') => {
  * If multiple items have the same key, only the last one will appear
  * @param {array} arrayOfObjects 
  * @param {string} key 
- * @return {object}
+ * @return {object|boolean}
  */
 const keyBy = (arrayOfObjects,key) => {
-    let bag = {};
-
-    if (!isEmpty(arrayOfObjects)){
-        arrayOfObjects.map((item,index)=>{
-            bag[item[key]]={...item,index:index};
-            return true;
-        });
-        return bag;
+    if (isEmpty(arrayOfObjects)){
+        return false;
     }
-    return false;
+
+    let bag = {};
+    arrayOfObjects.map((item,index)=>{
+        bag[item[key]]={...item,index:index};
+        return true;
+    });
+    return bag;
 }
 
 /**
@@ -459,16 +459,16 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
  * @return {array|boolean}
  */
 const pluck = (arrayOfObjects, key) => {
-    let bag = [];
-
-    if (!isEmpty(arrayOfObjects)){
-        arrayOfObjects.map((item)=>{
-            bag.push(item[key]);
-            return true;
-        });
-        return bag;
+    if (isEmpty(arrayOfObjects)){
+        return false;
     }
-    return false;
+
+    let bag = [];
+    arrayOfObjects.map((item)=>{
+        bag.push(item[key]);
+        return true;
+    });
+    return bag;
 }
 
 /**
@@ -512,9 +512,13 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
  * @param {array} arrayOfObjects [{a:'1', b:'2', c:'3'}]
  * @param {object} structure {'a':'apple', 'b':'book'}; object properties with key of `a` to be replaced with key of `apple`
  * @param {boolean} merge 
- * @returns {array} [{ apple: '1', book: '2' }]
+ * @returns {array|boolean} [{ apple: '1', book: '2' }]
  */
  const mapAs = (arrayOfObjects, structure, merge=false) => {
+    if (isEmpty(arrayOfObjects)){
+        return false;
+    }
+
     return arrayOfObjects.map((item)=>{
 
         let set = {};
