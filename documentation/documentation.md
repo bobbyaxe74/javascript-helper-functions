@@ -6,6 +6,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`autoEllipses`](#-autoEllipses)
 - [`characterRange`](#-characterRange)
 - [`fileNameFromPath`](#-fileNameFromPath)
+- [`groupBy`](#-groupBy)
 - [`hasRepeatedLetters`](#-hasRepeatedLetters)
 - [`hex2rgba`](#-hex2rgba)
 - [`inputFileToBase64`](#-inputFileToBase64)
@@ -38,6 +39,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`randomDate`](#-randomDate)
 - [`randomString`](#-randomString)
 - [`sliceInToGroups`](#-sliceInToGroups)
+- [`mapAs`](#-mapAs)
 - [`tryOrReplace`](#-tryOrReplace)
 - [`ucfirst`](#-ucfirst)
 
@@ -100,9 +102,50 @@ fileNameFromPath("characters\\images\\luigi.jpg",'\\');
 
 &nbsp;
 
+### `# groupBy()`
+
+The `groupBy()` method groups objects contained in an array by a common key.
+
+```
+let arrayOfObjects = [
+  {firstName:'Mario',lastName:'Mario', nationality:'Italian'},
+  {firstName:'Luigi',lastName:'Mario', nationality:'Italian'},
+  {firstName:'Yoshi',lastName:'Green', nationality:'Mushroomnian'},
+  {firstName:'Princess',lastName:'Peach', nationality:'Mushroomnian'},
+  {firstName:'Princess',lastName:'Daisy', nationality:'Sarasalander'},
+  {firstName:'Pauline',lastName:'Louise', nationality:'Donish'},
+]
+
+groupBy(arrayOfObjects,'nationality');
+
+// ...
+{
+    Italian: [
+        {firstName: 'Mario',   lastName: 'Mario', nationality: 'Italian', index: 0},
+        {firstName: 'Luigi', lastName: 'Mario', nationality: 'Italian', index: 1}
+    ],
+    Mushroomnian: [
+        {firstName: 'Yoshi', lastName: 'Green', nationality: 'Mushroomnian', index: 2},
+        {firstName: 'Princess', lastName: 'Peach', nationality: 'Mushroomnian', index: 3}
+    ],
+    Sarasalander: [
+        {firstName: 'Princess', lastName: 'Daisy', nationality: 'Sarasalander', index: 4}
+    ],
+    Donish: [
+        {firstName: 'Pauline', lastName: 'Louise', nationality: 'Donish', index: 5}
+    ]
+}
+
+groupBy([],'nationality');
+
+// false
+```
+
+&nbsp;
+
 ### `# hasRepeatedLetters()`
 
-The `hasRepeatedLetters()` method checks if a string has repeated characters.
+The `hasRepeatedLetters()` method checks if a string has successive repeated characters.
 
 ```
 hasRepeatedLetters('Princess Rosalina');
@@ -570,6 +613,43 @@ lcfirst('Toadette Mushroom);
 lcfirst(undefined);
 
 // ''
+```
+
+&nbsp;
+
+### `# mapAs()`
+
+The `mapAs()` method restructures individual objects contained in an array 
+to conform with the given structure, also with the option of merging in the original object.
+
+```
+let data = [
+    {fullName:'Mario Mario',occupation:'Plumber',age:'34'},
+    {fullName:'Luigi Mario',occupation:'Plumber',age:'34'},
+    {fullName:'Yoshi Green',occupation:'Self Employed',age:'27'},
+    {fullName:'Princess Peach',occupation:'Princess',age:'32'}
+];
+let structure = {'fullName':'name','occupation':'job'};
+
+mapAs(data,structure);
+
+// ...
+[
+  { name: 'Mario Mario', job: 'Plumber' },
+  { name: 'Luigi Mario', job: 'Plumber' },
+  { name: 'Yoshi Green', job: 'Self Employed' },
+  { name: 'Princess Peach', job: 'Princess' }
+]
+
+mapAs(data,structure,true);
+
+// ...
+[
+  { fullName: 'Mario Mario', occupation: 'Plumber', age: '34', name: 'Mario Mario', job: 'Plumber'},
+  { fullName: 'Luigi Mario', occupation: 'Plumber', age: '34', name: 'Luigi Mario', job: 'Plumber'},
+  { fullName: 'Yoshi Green', occupation: 'Self Employed', age: '27', name: 'Yoshi Green', job: 'Self Employed'},
+  { fullName: 'Princess Peach', occupation: 'Princess', age: '32', name: 'Princess Peach', job: 'Princess'}
+]
 ```
 
 &nbsp;

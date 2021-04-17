@@ -252,7 +252,7 @@ const isLowerCase = (string) => {
 }
 
 /**
- * Check if a string has repeated characters
+ * Check if a string has successive repeated characters
  * @param {string} string 
  * @return {boolean}
  */
@@ -376,19 +376,19 @@ const fileNameFromPath = (path, separator='\\') => {
  * If multiple items have the same key, only the last one will appear
  * @param {array} arrayOfObjects 
  * @param {string} key 
- * @return {object}
+ * @return {object|boolean}
  */
 const keyBy = (arrayOfObjects,key) => {
-    let bag = {};
-
-    if (!isEmpty(arrayOfObjects)){
-        arrayOfObjects.map((item,index)=>{
-            bag[item[key]]={...item,index:index};
-            return true;
-        });
-        return bag;
+    if (isEmpty(arrayOfObjects)){
+        return false;
     }
-    return false;
+
+    let bag = {};
+    arrayOfObjects.map((item,index)=>{
+        bag[item[key]]={...item,index:index};
+        return true;
+    });
+    return bag;
 }
 
 /**
@@ -459,16 +459,16 @@ const paginateData = (arrayOfObjects, pageSize, pageNumber) => {
  * @return {array|boolean}
  */
 const pluck = (arrayOfObjects, key) => {
-    let bag = [];
-
-    if (!isEmpty(arrayOfObjects)){
-        arrayOfObjects.map((item)=>{
-            bag.push(item[key]);
-            return true;
-        });
-        return bag;
+    if (isEmpty(arrayOfObjects)){
+        return false;
     }
-    return false;
+
+    let bag = [];
+    arrayOfObjects.map((item)=>{
+        bag.push(item[key]);
+        return true;
+    });
+    return bag;
 }
 
 /**
@@ -505,8 +505,59 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return bag;
 }
 
+/**
+ * Restructure individual objects contained in an array
+ * to conform with the given structure, also with the  
+ * option of merging in the original object.
+ * @param {array} arrayOfObjects [{a:'1', b:'2', c:'3'}]
+ * @param {object} structure {'a':'apple', 'b':'book'}; object properties with key of `a` to be replaced with key of `apple`
+ * @param {boolean} merge 
+ * @return {array|boolean} [{ apple: '1', book: '2' }]
+ */
+ const mapAs = (arrayOfObjects, structure, merge=false) => {
+    if (isEmpty(arrayOfObjects)){
+        return false;
+    }
+
+    return arrayOfObjects.map((item)=>{
+
+        let set = {};
+        for(each in structure){
+            if (item[each]){
+                set = {...set,[structure[each]]:item[each]};
+            }
+        }
+
+        // Check if current object data should be merged in.
+        return merge ? {...item,...set} : set;
+    });
+}
+
+/**
+ * Group objects contained in an array by a common key
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {object|boolean}
+ */
+const groupBy = (arrayOfObjects, key) => {
+    if (isEmpty(arrayOfObjects)){
+        return false;
+    }
+
+    let bag = {};
+    arrayOfObjects.map((item,index)=>{
+        if (bag[item[key]]) {
+            return bag[item[key]] = [...bag[item[key]], {...item,index:index}];
+        } else {
+            return bag[item[key]] = [{...item,index:index}];
+        }
+    });
+
+    return bag;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy
 };
