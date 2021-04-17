@@ -512,7 +512,7 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
  * @param {array} arrayOfObjects [{a:'1', b:'2', c:'3'}]
  * @param {object} structure {'a':'apple', 'b':'book'}; object properties with key of `a` to be replaced with key of `apple`
  * @param {boolean} merge 
- * @returns {array|boolean} [{ apple: '1', book: '2' }]
+ * @return {array|boolean} [{ apple: '1', book: '2' }]
  */
  const mapAs = (arrayOfObjects, structure, merge=false) => {
     if (isEmpty(arrayOfObjects)){
@@ -533,8 +533,31 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     });
 }
 
+/**
+ * Group objects contained in an array by a common key
+ * @param {array} arrayOfObjects 
+ * @param {string} key 
+ * @return {object|boolean}
+ */
+const groupBy = (arrayOfObjects, key) => {
+    if (isEmpty(arrayOfObjects)){
+        return false;
+    }
+
+    let bag = {};
+    arrayOfObjects.map((item,index)=>{
+        if (bag[item[key]]) {
+            return bag[item[key]] = [...bag[item[key]], {...item,index:index}];
+        } else {
+            return bag[item[key]] = [{...item,index:index}];
+        }
+    });
+
+    return bag;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy
 };

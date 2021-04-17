@@ -6,6 +6,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`autoEllipses`](#-autoEllipses)
 - [`characterRange`](#-characterRange)
 - [`fileNameFromPath`](#-fileNameFromPath)
+- [`groupBy`](#-groupBy)
 - [`hasRepeatedLetters`](#-hasRepeatedLetters)
 - [`hex2rgba`](#-hex2rgba)
 - [`inputFileToBase64`](#-inputFileToBase64)
@@ -97,6 +98,47 @@ fileNameFromPath("characters/images/mario.jpg",'/');
 fileNameFromPath("characters\\images\\luigi.jpg",'\\');
 
 // luigi.jpg
+```
+
+&nbsp;
+
+### `# groupBy()`
+
+The `groupBy()` method groups objects contained in an array by a common key.
+
+```
+let arrayOfObjects = [
+  {firstName:'Mario',lastName:'Mario', nationality:'Italian'},
+  {firstName:'Luigi',lastName:'Mario', nationality:'Italian'},
+  {firstName:'Yoshi',lastName:'Green', nationality:'Mushroomnian'},
+  {firstName:'Princess',lastName:'Peach', nationality:'Mushroomnian'},
+  {firstName:'Princess',lastName:'Daisy', nationality:'Sarasalander'},
+  {firstName:'Pauline',lastName:'Louise', nationality:'Donish'},
+]
+
+groupBy(arrayOfObjects,'nationality');
+
+// ...
+{
+    Italian: [
+        {firstName: 'Mario',   lastName: 'Mario', nationality: 'Italian', index: 0},
+        {firstName: 'Luigi', lastName: 'Mario', nationality: 'Italian', index: 1}
+    ],
+    Mushroomnian: [
+        {firstName: 'Yoshi', lastName: 'Green', nationality: 'Mushroomnian', index: 2},
+        {firstName: 'Princess', lastName: 'Peach', nationality: 'Mushroomnian', index: 3}
+    ],
+    Sarasalander: [
+        {firstName: 'Princess', lastName: 'Daisy', nationality: 'Sarasalander', index: 4}
+    ],
+    Donish: [
+        {firstName: 'Pauline', lastName: 'Louise', nationality: 'Donish', index: 5}
+    ]
+}
+
+groupBy([],'nationality');
+
+// false
 ```
 
 &nbsp;
