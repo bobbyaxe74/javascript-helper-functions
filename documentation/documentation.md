@@ -32,6 +32,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`lcfirst`](#-lcfirst)
 - [`mongooseSelectDB`](#-mongooseSelectDB)
 - [`numericRange`](#-numericRange)
+- [`numericAbbreviator`](#-numericAbbreviator)
 - [`objectToFormData`](#-objectToFormData)
 - [`paginateData`](#-paginateData)
 - [`passwordStrengthMeter`](#-passwordStrengthMeter)
@@ -665,6 +666,24 @@ mongooseSelectDB('mongodb://superAdmin:*****@111.887.144.322:27017/?authSource=a
 
 // mongodb://superAdmin:*****@111.887.144.322:27017/super_mario_world?authSource=admin
 ```
+
+&nbsp;
+
+### `# numericAbbreviator()`
+
+The `numericAbbreviator()` method abbreviates numeric values.
+
+```
+numericAbbreviator('900000000000000000000000');
+
+// 900Sp
+
+numericAbbreviator(900000000000000000000000);
+
+// 9eK
+```
+JavaScript converts large integers to scientific notation, which can result to unintended outcomes,
+hence string format of large integers is recommended.
 
 &nbsp;
 

@@ -556,8 +556,21 @@ const groupBy = (arrayOfObjects, key) => {
     return bag;
 }
 
+/**
+ * Abbreviate numeric values
+ * @param {string} value '36000'
+ * @returns {string} 36k
+ */
+const numericAbbreviator = (value) => {
+    let suffix = {1:'',2:'K',3:'M',4:'T',5:'Qa',6:'Qi',7:'Hx',8:'Sp',9:'Oc',10:'No'}
+    let group =  value.toString().match(/.{1,3}(?=(.{3})*$)/g);
+
+    if (suffix[group.length] !== undefined) {return group[0]+suffix[group.length];}
+    return value;
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy, numericAbbreviator
 };
