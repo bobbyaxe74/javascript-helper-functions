@@ -522,7 +522,7 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return arrayOfObjects.map((item)=>{
 
         let set = {};
-        for(each in structure){
+        for(const each in structure){
             if (item[each]){
                 set = {...set,[structure[each]]:item[each]};
             }
