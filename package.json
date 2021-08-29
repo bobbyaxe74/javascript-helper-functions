@@ -24,6 +24,7 @@
     "form-data": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.15.0",
     "jest": "^27.1.0"
   }
 }
