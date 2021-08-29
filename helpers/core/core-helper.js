@@ -230,7 +230,7 @@ const passwordStrengthMeter = (string)=>{
  * @return {boolean}
  */
 const isLetter = (character) => {
-    return character.match(/^[a-zA-Z]+$/);
+    return !isString(character)? false : character.match(/^[a-zA-Z]+$/)? true : false;
 }
 
 /**
@@ -257,7 +257,7 @@ const isLowerCase = (string) => {
  * @return {boolean}
  */
 const hasRepeatedLetters = (string) => {
-    return (/([a-zA-Z0-9])\1{1,}/).test(string);
+    return !isLetter(string)? false : (/([a-zA-Z0-9])\1{1,}/).test(string);
 }
 
 /**
