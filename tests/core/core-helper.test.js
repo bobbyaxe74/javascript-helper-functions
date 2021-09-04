@@ -328,3 +328,104 @@ test('tryOrReplace', () => {
   expect(JHF.tryOrReplace(data,'character.name','unavailable')).toBe('Donkey Kong');
   expect(JHF.tryOrReplace(data,'character.type.type','unavailable')).toBe('unavailable');
 });
+
+test('numericRange', () => {
+  expect(JHF.numericRange(1,1000)).toBe(false);
+  expect(JHF.numericRange(9,0)).toBe(false);
+  expect(JHF.numericRange(1,9,0)).toBe(false);
+  expect(JHF.numericRange(1,9,1)).toStrictEqual([1,2,3,4,5,6,7,8,9]);
+  expect(JHF.numericRange(1,9,2)).toStrictEqual([1,3,5,7,9]);
+  expect(JHF.numericRange(1,999)).toBeTruthy();
+});
+
+test('characterRange', () => {
+  expect(JHF.characterRange(1,9)).toBe('123456789');
+  expect(JHF.characterRange('1','9')).toBe('123456789');
+  expect(JHF.characterRange(9,1)).toBe(false);
+  expect(JHF.characterRange('9','1')).toBe(false);
+  expect(JHF.characterRange('a','z')).toStrictEqual('abcdefghijklmnopqrstuvwxyz');
+  expect(JHF.characterRange('A','Z')).toStrictEqual('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  expect(JHF.characterRange('a','Z')).toBe(false);
+  expect(JHF.characterRange('A','z')).toStrictEqual('ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz');
+  expect(JHF.characterRange(1,65535)).toBeTruthy();
+});
+
+test('paginateData', () => {
+  let data = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'King Koopa', age:'32', sex:'Male'},
+    {name:'Baby Luma', age:'10', sex:'Male'},
+    {name:'Toad Mushroom', age:'32', sex:'Male'},
+    {name:'Birdo Pink', age:'29', sex:'?'},
+    {name:'Diddy Kong', age:'23', sex:'Male'},
+    {name:'Donkey Kong', age:'36', sex:'Male'},
+  ];
+
+  let expectedPageSize3PageNumber1 = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'}
+  ];
+
+  let expectedPageSize3PageNumber2 = [
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'King Koopa', age:'32', sex:'Male'},
+    {name:'Baby Luma', age:'10', sex:'Male'},
+  ];
+
+  let expectedPageSize6PageNumber1 = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'King Koopa', age:'32', sex:'Male'},
+    {name:'Baby Luma', age:'10', sex:'Male'},
+  ];
+
+  let expectedPageSize1PageNumber6 = [
+    {name:'Baby Luma', age:'10', sex:'Male'},
+  ];
+
+  let expectedPageSize2PageNumber5 = [
+    {name:'Diddy Kong', age:'23', sex:'Male'},
+    {name:'Donkey Kong', age:'36', sex:'Male'},
+  ];
+
+  expect(JHF.paginateData(data,3,1)).toStrictEqual(expectedPageSize3PageNumber1);
+  expect(JHF.paginateData(data,3,2)).toStrictEqual(expectedPageSize3PageNumber2);
+  expect(JHF.paginateData(data,6,1)).toStrictEqual(expectedPageSize6PageNumber1);
+  expect(JHF.paginateData(data,1,6)).toStrictEqual(expectedPageSize1PageNumber6);
+  expect(JHF.paginateData(data,2,5)).toStrictEqual(expectedPageSize2PageNumber5);
+});
+
+test('pluck', () => {
+  let data = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'Princess Daisy', age:'28', sex:'Female'},
+    {name:'Diddy Kong', age:'23', sex:'Male'},
+    {name:'Donkey Kong', age:'36', sex:'Male'},
+  ];
+
+  let expectedForName = ['Mario Mario','Luigi Mario','Yoshi Green','Princess Peach','Princess Daisy','Diddy Kong','Donkey Kong'];
+  let expectedForAge = ['36', '34','27', '32','28', '23','36'];
+  let expectedForSex = ['Male','Male','Male','Female','Female', 'Male','Male'];
+
+  expect(JHF.pluck(data,'name')).toStrictEqual(expectedForName);
+  expect(JHF.pluck(data,'age')).toStrictEqual(expectedForAge);
+  expect(JHF.pluck(data,'sex')).toStrictEqual(expectedForSex);
+  expect(JHF.pluck([],'name')).toBe(false);
+});
+
+test('hex2rgba', () => {
+  expect(JHF.hex2rgba('e62310')).toBe('rgba(230,35,16,1)');
+  expect(JHF.hex2rgba('#44af35')).toBe('rgba(68,175,53,1)');
+  expect(JHF.hex2rgba('#fccf00',0.6)).toBe('rgba(252,207,0,0.6)');
+  expect(JHF.hex2rgba('#009bd9','0.9')).toBe('rgba(0,155,217,0.9)');
+  expect(JHF.hex2rgba('#00000g','0.3')).toBe('rgba(0,0,0,0.3)');
+});
