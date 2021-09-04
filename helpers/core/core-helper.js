@@ -428,13 +428,13 @@ const numericRange = (startAt, endAt, step=1) => {
 
 /**
  * List and return all characters between given characters
- * @param {string} startChar charset:UTF-8
- * @param {string} endChar charset:UTF-8
+ * @param {string} startChar charset:UTF-16
+ * @param {string} endChar charset:UTF-16
  * @return {boolean|string}
  */
 const characterRange = (startChar, endChar) => {
-    startChar = startChar.charCodeAt(0);
-    endChar = endChar.charCodeAt(0);
+    startChar = startChar.toString().charCodeAt(0);
+    endChar = endChar.toString().charCodeAt(0);
     let numberOfChar = endChar - startChar +1;
 
     if (startChar > endChar || numberOfChar < 0 || numberOfChar > 65535){return false;}
