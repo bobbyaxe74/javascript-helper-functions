@@ -566,7 +566,7 @@ const numericAbbreviator = (value) => {
     let group =  value.toString().match(/.{1,3}(?=(.{3})*$)/g);
 
     if (suffix[group.length] !== undefined) {return group[0]+suffix[group.length];}
-    return value;
+    return value.length > 30? '∞' : value;
 }
 
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
