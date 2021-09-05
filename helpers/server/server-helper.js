@@ -1,4 +1,4 @@
-import {isArray, isBoolean} from '../core/core-helper';
+import {isArray, isBoolean} from '../core/core-helper.js';
 import FormData from 'form-data';
 
 /**
@@ -58,5 +58,5 @@ const mongooseSelectDB = (mongoString, dbName) => {
     }
 }
 
-export * from '../core/core-helper';
+export * from '../core/core-helper.js';
 export {objectToFormData, isEnv, mongooseSelectDB};
