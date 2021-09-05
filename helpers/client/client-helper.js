@@ -40,7 +40,7 @@ const isEnv = (applicationEnvironmentKey, string) => {
 const inputFileToBase64 = (file, callback) => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = () => {
+    return reader.onloadend = () => {
         callback(reader.result);
     };
 };

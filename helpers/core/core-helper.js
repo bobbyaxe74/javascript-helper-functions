@@ -230,7 +230,7 @@ const passwordStrengthMeter = (string)=>{
  * @return {boolean}
  */
 const isLetter = (character) => {
-    return character.match(/^[a-zA-Z]+$/);
+    return !isString(character)? false : character.match(/^[a-zA-Z]+$/)? true : false;
 }
 
 /**
@@ -257,7 +257,7 @@ const isLowerCase = (string) => {
  * @return {boolean}
  */
 const hasRepeatedLetters = (string) => {
-    return (/([a-zA-Z0-9])\1{1,}/).test(string);
+    return !isLetter(string)? false : (/([a-zA-Z0-9])\1{1,}/).test(string);
 }
 
 /**
@@ -428,13 +428,13 @@ const numericRange = (startAt, endAt, step=1) => {
 
 /**
  * List and return all characters between given characters
- * @param {string} startChar charset:UTF-8
- * @param {string} endChar charset:UTF-8
+ * @param {string} startChar charset:UTF-16
+ * @param {string} endChar charset:UTF-16
  * @return {boolean|string}
  */
 const characterRange = (startChar, endChar) => {
-    startChar = startChar.charCodeAt(0);
-    endChar = endChar.charCodeAt(0);
+    startChar = startChar.toString().charCodeAt(0);
+    endChar = endChar.toString().charCodeAt(0);
     let numberOfChar = endChar - startChar +1;
 
     if (startChar > endChar || numberOfChar < 0 || numberOfChar > 65535){return false;}
@@ -522,7 +522,7 @@ const sliceInToGroups = (arrayOfObjects, numberPerGroup=1) => {
     return arrayOfObjects.map((item)=>{
 
         let set = {};
-        for(each in structure){
+        for(const each in structure){
             if (item[each]){
                 set = {...set,[structure[each]]:item[each]};
             }
@@ -566,7 +566,7 @@ const numericAbbreviator = (value) => {
     let group =  value.toString().match(/.{1,3}(?=(.{3})*$)/g);
 
     if (suffix[group.length] !== undefined) {return group[0]+suffix[group.length];}
-    return value;
+    return value.length > 30? '∞' : value;
 }
 
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 

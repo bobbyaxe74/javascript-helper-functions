@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "A collection of small helpful javascript functions",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/bobbyaxe61/javascript-helper-functions.git"
+    "url": "git+https://github.com/bobbyaxe61/javascript-helper-functions.git"
   },
   "author": "bobbyaxe61",
   "license": "MIT",
@@ -17,7 +20,11 @@
   },
   "homepage": "https://github.com/bobbyaxe61/javascript-helper-functions#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "form-data": "^3.0.0"
+    "dotenv": "^10.0.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.0",
+    "jest": "^27.1.0"
   }
 }
