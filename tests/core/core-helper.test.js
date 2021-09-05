@@ -429,3 +429,121 @@ test('hex2rgba', () => {
   expect(JHF.hex2rgba('#009bd9','0.9')).toBe('rgba(0,155,217,0.9)');
   expect(JHF.hex2rgba('#00000g','0.3')).toBe('rgba(0,0,0,0.3)');
 });
+
+test('sliceInToGroups', () => {
+  let data = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'Princess Daisy', age:'28', sex:'Female'},
+  ];
+
+  let expectedNumberPerGroup2 = [
+    [
+      {name:'Mario Mario', age:'36', sex:'Male'},
+      {name:'Luigi Mario', age:'34', sex:'Male'}
+    ],
+    [
+      {name:'Yoshi Green', age:'27', sex:'Male'},
+      {name:'Princess Peach', age:'32', sex:'Female'}
+    ],
+    [
+      {name:'Princess Daisy', age:'28', sex:'Female'},
+    ]
+  ];
+
+  let expectedNumberPerGroup3 = [
+    [
+      {name:'Mario Mario', age:'36', sex:'Male'},
+      {name:'Luigi Mario', age:'34', sex:'Male'},
+      {name:'Yoshi Green', age:'27', sex:'Male'}
+    ],
+    [
+      {name:'Princess Peach', age:'32', sex:'Female'},
+      {name:'Princess Daisy', age:'28', sex:'Female'}
+    ]
+  ];
+
+  expect(JHF.sliceInToGroups(data, 2)).toStrictEqual(expectedNumberPerGroup2);
+  expect(JHF.sliceInToGroups(data, 3)).toStrictEqual(expectedNumberPerGroup3);
+});
+
+test('mapAs', () => {
+  let data = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'Princess Daisy', age:'28', sex:'Female'},
+  ];
+
+  let expected = [
+    { 'full name': 'Mario Mario', old: '36', gender: 'Male' },
+    { 'full name': 'Luigi Mario', old: '34', gender: 'Male' },
+    { 'full name': 'Yoshi Green', old: '27', gender: 'Male' },
+    { 'full name': 'Princess Peach', old: '32', gender: 'Female' },
+    { 'full name': 'Princess Daisy', old: '28', gender: 'Female' }
+  ];
+
+  expect(JHF.groupBy([],{name:'full name',age:'old',sex:'gender'})).toBe(false);
+  expect(JHF.mapAs(data,{name:'full name',age:'old',sex:'gender'})).toStrictEqual(expected);
+});
+
+test('groupBy', () => {
+  let data = [
+    {name:'Mario Mario', age:'36', sex:'Male'},
+    {name:'Luigi Mario', age:'34', sex:'Male'},
+    {name:'Yoshi Green', age:'27', sex:'Male'},
+    {name:'Princess Peach', age:'32', sex:'Female'},
+    {name:'Princess Daisy', age:'28', sex:'Female'},
+  ];
+
+  let expected = {
+    Male: [
+      { name: 'Mario Mario', age: '36', sex: 'Male', index: 0 },
+      { name: 'Luigi Mario', age: '34', sex: 'Male', index: 1 },
+      { name: 'Yoshi Green', age: '27', sex: 'Male', index: 2 }
+    ],
+    Female: [
+      { name: 'Princess Peach', age: '32', sex: 'Female', index: 3 },
+      { name: 'Princess Daisy', age: '28', sex: 'Female', index: 4 }
+    ]
+  };
+
+  expect(JHF.groupBy([],'sex')).toBe(false);
+  expect(JHF.groupBy(data,'sex')).toStrictEqual(expected);
+});
+
+test('numericAbbreviator', () => {
+  expect(JHF.numericAbbreviator('10')).toBe('10');
+  expect(JHF.numericAbbreviator('100')).toBe('100');
+  expect(JHF.numericAbbreviator('1000')).toBe('1K');
+  expect(JHF.numericAbbreviator('10000')).toBe('10K');
+  expect(JHF.numericAbbreviator('100000')).toBe('100K');
+  expect(JHF.numericAbbreviator('1000000')).toBe('1M');
+  expect(JHF.numericAbbreviator('10000000')).toBe('10M');
+  expect(JHF.numericAbbreviator('100000000')).toBe('100M');
+  expect(JHF.numericAbbreviator('1000000000')).toBe('1T');
+  expect(JHF.numericAbbreviator('10000000000')).toBe('10T');
+  expect(JHF.numericAbbreviator('100000000000')).toBe('100T');
+  expect(JHF.numericAbbreviator('1000000000000')).toBe('1Qa');
+  expect(JHF.numericAbbreviator('10000000000000')).toBe('10Qa');
+  expect(JHF.numericAbbreviator('100000000000000')).toBe('100Qa');
+  expect(JHF.numericAbbreviator('1000000000000000')).toBe('1Qi');
+  expect(JHF.numericAbbreviator('10000000000000000')).toBe('10Qi');
+  expect(JHF.numericAbbreviator('100000000000000000')).toBe('100Qi');
+  expect(JHF.numericAbbreviator('1000000000000000000')).toBe('1Hx');
+  expect(JHF.numericAbbreviator('10000000000000000000')).toBe('10Hx');
+  expect(JHF.numericAbbreviator('100000000000000000000')).toBe('100Hx');
+  expect(JHF.numericAbbreviator('1000000000000000000000')).toBe('1Sp');
+  expect(JHF.numericAbbreviator('10000000000000000000000')).toBe('10Sp');
+  expect(JHF.numericAbbreviator('100000000000000000000000')).toBe('100Sp');
+  expect(JHF.numericAbbreviator('1000000000000000000000000')).toBe('1Oc');
+  expect(JHF.numericAbbreviator('10000000000000000000000000')).toBe('10Oc');
+  expect(JHF.numericAbbreviator('100000000000000000000000000')).toBe('100Oc');
+  expect(JHF.numericAbbreviator('1000000000000000000000000000')).toBe('1No');
+  expect(JHF.numericAbbreviator('10000000000000000000000000000')).toBe('10No');
+  expect(JHF.numericAbbreviator('100000000000000000000000000000')).toBe('100No');
+  expect(JHF.numericAbbreviator('1000000000000000000000000000000')).toBe('∞');
+});
