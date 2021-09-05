@@ -26,5 +26,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.15.0",
     "jest": "^27.1.0"
+  },
+  "exports": {
+    "./client-helper": "./helpers/client/client-helper.js",
+    "./server-helper": "./helpers/server/server-helper.js"
   }
 }
