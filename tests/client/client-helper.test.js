@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { expect } from '@jest/globals';
-import * as JHF from '../../helpers/client/client-helper';
+import * as JHF from '../../helpers/client/client-helper.js';
 
 test('objectToFormData', () => {
     let form = JHF.objectToFormData({firstName:'Princess', lastName:'Peach'});

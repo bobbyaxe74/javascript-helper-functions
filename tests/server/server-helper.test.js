@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import * as JHF from '../../helpers/server/server-helper';
+import * as JHF from '../../helpers/server/server-helper.js';
 
 test('objectToFormData', () => {
     let form = JHF.objectToFormData({firstName:'Princess', lastName:'Peach'});

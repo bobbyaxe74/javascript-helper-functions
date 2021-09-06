@@ -1,4 +1,4 @@
-import * as JHF from '../../helpers/core/core-helper';
+import * as JHF from '../../helpers/core/core-helper.js';
 
 test('isEmptyObject', () => {
   expect(JHF.isEmptyObject({})).toBe(true);

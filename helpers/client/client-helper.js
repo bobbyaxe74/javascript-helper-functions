@@ -1,4 +1,4 @@
-// import { methodName } from '../core/core-helper';
+// import { methodName } from '../core/core-helper.js';
 
 /**
  * Create a FormData object with a given object
@@ -45,5 +45,5 @@ const inputFileToBase64 = (file, callback) => {
     };
 };
 
-export * from '../core/core-helper';
+export * from '../core/core-helper.js';
 export {objectToFormData, isEnv, inputFileToBase64};
