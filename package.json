@@ -1,12 +1,23 @@
 {
   "name": "jhf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of small helpful javascript functions",
   "main": "index.js",
   "type": "module",
   "directories": {
     "test": "tests"
   },
+  "keywords": [
+    "javascript",
+    "react",
+    "react native",
+    "vue",
+    "node",
+    "js",
+    "javascript helper functions",
+    "react js",
+    "vue js"
+  ],
   "scripts": {
     "test": "jest"
   },
