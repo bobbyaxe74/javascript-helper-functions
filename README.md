@@ -18,33 +18,33 @@ A collection of small helpful javascript functions. [See Documentation](./docume
 
 ## Installation
 ```
-npm install javascript-helper-functions
+npm install jhf
 ```
 
 ## Usage
 
 > For client side applications use
 ```
-import { isArray } from "javascript-helper-functions/client-helper";
+import { isArray } from "jhf/client-helper";
 
 isArray({}) // false
 ```
 
 ```
-import * as JHF from "javascript-helper-functions/client-helper";
+import * as JHF from "jhf/client-helper";
 
 JHF.isArray({}) // false
 ```
 
 > For server side applications use
 ```
-import { isArray } from "javascript-helper-functions/server-helper";
+import { isArray } from "jhf/server-helper";
 
 isArray({}) // false
 ```
 
 ```
-import * as JHF from "javascript-helper-functions/server-helper";
+import * as JHF from "jhf/server-helper";
 
 JHF.isArray({}) // false
 ```
