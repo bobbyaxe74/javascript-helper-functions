@@ -1,6 +1,6 @@
 {
   "name": "jhf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of small helpful javascript functions",
   "main": "index.js",
   "type": "module",
@@ -13,6 +13,8 @@
     "react native",
     "vue",
     "node",
+    "deno",
+    "web",
     "js",
     "javascript helper functions",
     "react js",
