@@ -23,7 +23,7 @@ npm install jhf
 
 ## Usage
 
-> For client side applications use
+> For client side applications (React.js, React Native, Vue.js) use
 ```
 import { isArray } from "jhf/client-helper";
 
@@ -36,7 +36,7 @@ import * as JHF from "jhf/client-helper";
 JHF.isArray({}) // false
 ```
 
-> For server side applications use
+> For server side applications (Node.js, Deno) use
 ```
 import { isArray } from "jhf/server-helper";
 

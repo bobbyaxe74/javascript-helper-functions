@@ -569,8 +569,40 @@ const numericAbbreviator = (value) => {
     return value.length > 30? '∞' : value;
 }
 
+/**
+ * Compare version numbers
+ * @param {string} comparand '3.2.1'
+ * @returns {object} {isGreaterThanVersion:func, isLessThanVersion:func, isEqualToVersion:func}
+ * @example version('3.2.1').isGreaterThanVersion('3.2.0'); // true
+ */
+const version = (comparand)=>{
+    const operator = (a,b) => {
+        a = a.split(".");
+        b = b.split(".");
+        let maxLength = a.length > b.length ? a.length : b.length;
+        for (let i = 0; i < maxLength; i++) {
+
+            if ((a[i] && !b[i]) || (Number(a[i]) > Number(b[i]))){
+                return true;
+            }
+
+            if ((!a[i] && b[i]) || (Number(a[i]) < Number(b[i]))){
+                return false;
+            }
+        }
+        return null;
+    }
+
+    return {
+      isGreaterThanVersion:(comparator)=>{return operator(comparand,comparator) === true},
+      isLessThanVersion:(comparator)=>{return operator(comparand,comparator) === false},
+      isEqualToVersion:(comparator)=>{return operator(comparand,comparator) === null},
+    }
+}
+
 export {isEmptyObject, isEmptyArray, ucfirst, randomDate, passwordStrengthMeter, isLetter, isLowerCase, isUpperCase, 
     hasRepeatedLetters, isString, isEmptyString, isArray, isObject, isDefined, isEmpty, lcfirst, autoEllipses, isNumeric, 
     isNumber, randomString, isBoolean, fileNameFromPath, keyBy, tryOrReplace, numericRange, characterRange, paginateData, 
-    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy, numericAbbreviator
+    pluck, hex2rgba, sliceInToGroups, isNotEmptyObject, isNotEmptyArray, isNotEmptyString, mapAs, groupBy, numericAbbreviator,
+    version
 };
