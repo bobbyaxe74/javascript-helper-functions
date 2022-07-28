@@ -43,6 +43,7 @@ require additional packages or API. which would be indicated appropriately.
 - [`mapAs`](#-mapAs)
 - [`tryOrReplace`](#-tryOrReplace)
 - [`ucfirst`](#-ucfirst)
+- [`version`](#-version)
 
 &nbsp;
 
@@ -992,6 +993,28 @@ ucfirst(king Boo);
 ucfirst(undefined);
 
 // ''
+```
+
+&nbsp;
+
+### `# version()`
+
+The `version()` method accepts one parameter (comparand) and returns an object of functions 
+were each function accepts a single parameter (comparator) on which the comparison operation 
+is performed to return true or false when executed.
+
+```
+version('3.2.1').isGreaterThanVersion('3.0.0');
+
+// true
+
+version('1.1.1').isLessThanVersion('1.1.0');
+
+// false
+
+version('1.1.1').isEqualToVersion('1.1.4');
+
+// false
 ```
 
 &nbsp;

@@ -547,3 +547,17 @@ test('numericAbbreviator', () => {
   expect(JHF.numericAbbreviator('100000000000000000000000000000')).toBe('100No');
   expect(JHF.numericAbbreviator('1000000000000000000000000000000')).toBe('∞');
 });
+
+test('version', () => {
+  expect(JHF.version('2.1.2')).toMatchObject({
+    isGreaterThanVersion: expect.any(Function),
+    isLessThanVersion: expect.any(Function),
+    isEqualToVersion: expect.any(Function),
+  });
+  expect(JHF.version('3.2.1').isGreaterThanVersion('3.0.0')).toBe(true);
+  expect(JHF.version('3.2.1').isGreaterThanVersion('3.3.3')).toBe(false);
+  expect(JHF.version('2.1.3').isLessThanVersion('5.4.0')).toBe(true);
+  expect(JHF.version('1.1.1').isLessThanVersion('1.0.0')).toBe(false);
+  expect(JHF.version('1.1.1').isEqualToVersion('1.1.1')).toBe(true);
+  expect(JHF.version('1.1.1').isEqualToVersion('1.1.4')).toBe(false);
+});
