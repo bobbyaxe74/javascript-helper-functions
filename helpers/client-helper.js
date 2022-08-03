@@ -45,5 +45,5 @@ const inputFileToBase64 = (file, callback) => {
     };
 };
 
-export * from '../core/core-helper.js';
+export * from './core/core-helper.js';
 export {objectToFormData, isEnv, inputFileToBase64};
