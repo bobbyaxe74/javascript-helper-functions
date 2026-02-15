@@ -25,26 +25,26 @@ npm install jhf
 
 > For client side applications (React.js, React Native, Vue.js) use
 ```
-import { isArray } from "jhf/client-helper";
+import { isArray } from "jhf/helpers/client-helper";
 
 isArray({}) // false
 ```
 
 ```
-import * as JHF from "jhf/client-helper";
+import * as JHF from "jhf/helpers/client-helper";
 
 JHF.isArray({}) // false
 ```
 
 > For server side applications (Node.js, Deno) use
 ```
-import { isArray } from "jhf/server-helper";
+import { isArray } from "jhf/helpers/server-helper";
 
 isArray({}) // false
 ```
 
 ```
-import * as JHF from "jhf/server-helper";
+import * as JHF from "jhf/helpers/server-helper";
 
 JHF.isArray({}) // false
 ```
